@@ -9,4 +9,6 @@
 
 ## Browser
 
-Navigate to http://localhost:3000/api-docs/ for the API documentation
+- Running on PORT 3000 `npm start`
+
+- Navigate to http://localhost:3000/api-docs/ for the API documentation
