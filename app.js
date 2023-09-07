@@ -16,6 +16,8 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
+// ? Swagger documentation
+
 /**
  * @swagger
  * /books:
@@ -37,6 +39,7 @@ app.get("/books", (req, res) => {
   ]);
 });
 
+// ? Test to make sure server is up and running
 // app.get("/", (req, res) => {
 //   res.send("Hello World! Let's GOOOO!!!!");
 // });
