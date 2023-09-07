@@ -3,6 +3,11 @@ const app = express();
 const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 
+// data parser
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
@@ -16,7 +21,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
-// ? Swagger documentation
+// * Swagger documentation All Books
 
 /**
  * @swagger
@@ -37,6 +42,38 @@ app.get("/books", (req, res) => {
       publisher: "Scholastic",
     },
   ]);
+});
+
+// * Swagger documentation Post
+
+/**
+ * @swagger
+ * /book:
+ *   post:
+ *     description: Create a new book
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - name: book
+ *         description: Book object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             title:
+ *               type: string
+ *     responses:
+ *       200:
+ *         description: Book created successfully
+ *       400:
+ *         description: Bad request, invalid input data
+ */
+
+// ? Post will have the path of book with an echo back
+app.post("/book", (req, res) => {
+  const title = req.body.title;
+  res.send({ title });
 });
 
 // ? Test to make sure server is up and running
